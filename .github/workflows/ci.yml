@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-java@v3.6.0
         with:
           distribution: zulu
-          java-version: actions/setup-java@v3.6.0
+          java-version: ${{ steps.properties.outputs.java_version }}
 
       - name: make gradle wrapper executable
         if: ${{ runner.os != 'Windows' }}
