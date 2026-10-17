@@ -97,6 +97,10 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 sourceSets.main.resources.srcDir generateModMetadata
 neoForge.ideSyncTask generateModMetadata
 
+tasks.named('createMinecraftArtifacts') {
+    dependsOn tasks.named('generateModMetadata')
+}
+
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
@@ -105,7 +109,8 @@ publishing {
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/repo"
+            // Gradle 10 removes the space-assignment syntax; use assignment.
+            url = "file://${project.projectDir}/repo"
         }
     }
 }
