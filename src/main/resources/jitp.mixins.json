@@ -2,7 +2,7 @@
   "required": true,
   "package": "dev.zanth.teleport.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": ["TeleportCommandMixin", "TeleportCommandPermissionMixin"],
+  "mixins": ["TeleportCommandPermissionMixin"],
   "injectors": {
     "defaultRequire": 1
   },
