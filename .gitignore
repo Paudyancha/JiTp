@@ -3,7 +3,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/**/build/
 
-.idea/
+.idea/*
+!.idea/icon.svg
+
 *.iws
 *.iml
 *.ipr

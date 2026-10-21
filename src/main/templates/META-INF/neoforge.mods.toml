@@ -19,6 +19,8 @@ description='''
 Allow players to use the tp command within certain limits without permission
 '''
 
+logoFile="pack.png"
+
 [[mixins]]
 config="${mod_id}.mixins.json"
 

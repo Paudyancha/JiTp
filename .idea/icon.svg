@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" version="1.1">
+  <title>Ji / TP</title>
+  <desc>Ji TP，use JetBrains Mono</desc>
+
+  <!-- back -->
+  <rect x="0" y="0" width="256" height="256" fill="#ffffff"/>
+
+  <!-- 左上黑 -->
+  <polygon points="0,0 256,0 0,256" fill="#000000"/>
+
+  <g font-family="'JetBrains Mono', 'JetBrains Mono NL', 'Fira Code', Consolas, 'Courier New', monospace"
+     font-weight="600"
+     font-size="96">
+
+    <!-- 黑底白字 -->
+    <text x="16" y="86" fill="#ffffff" text-anchor="start">Ji</text>
+
+    <!-- 白底黑字 -->
+    <text x="240" y="240" fill="#000000" text-anchor="end">TP</text>
+  </g>
+</svg>
