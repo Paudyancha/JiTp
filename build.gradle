@@ -9,7 +9,29 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
-version = mod_version
+String buildType
+String buildNumber = System.getenv("GITHUB_RUN_NUMBER")
+String buildTypeEnv = System.getenv("BUILD_TYPE")
+if (buildTypeEnv == "pr") {
+    buildType = 'pr'
+} else if (buildTypeEnv == "hotfix") {
+    buildType = 'hotfix'
+} else if (buildTypeEnv == "snapshot") {
+    buildType = 'snapshot'
+} else if (buildTypeEnv == "release") {
+    buildType = null
+    buildNumber = null
+} else {
+    buildType = 'build'
+}
+def githubRef = System.getenv("GITHUB_REF")
+if (githubRef != null && githubRef.startsWith("refs/tags/")) {
+    version = githubRef.substring(githubRef.lastIndexOf('/') + 1)
+} else {
+    version = "${mod_version}" + (buildNumber != null ? "+${buildType}.${buildNumber}" : "")
+}
+// group = maven_group
+
 group = mod_group_id
 
 sourceSets.main.resources {
@@ -22,7 +44,7 @@ repositories {
 }
 
 base {
-    archivesName = mod_id
+    archivesName = "${mod_id}-neoforge"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -87,7 +109,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_id                 : mod_id,
             mod_name               : mod_name,
             mod_license            : mod_license,
-            mod_version            : mod_version,
+            mod_version            : version,
     ]
     inputs.properties replaceProperties
     expand replaceProperties
