@@ -11,7 +11,6 @@ import net.neoforged.neoforge.event.CommandEvent;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-
 @EventBusSubscriber
 public final class TeleportLimitHandler {
 
