@@ -50,6 +50,12 @@ jobs:
           name: "${{ steps.properties.outputs.mod_name }} ${{ steps.version.outputs.version }}"
           path: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
 
+      - name: Upload Release Jar
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar     
+
       - name: Publish Mod
         uses: Kira-NT/mc-publish@v3.3.1
         continue-on-error: true
