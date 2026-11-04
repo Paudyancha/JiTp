@@ -1,10 +1,10 @@
-# JiTp 项目代理指令
+# JiTp
 
-本文件在用户级 `~/.dsh/AGENTS.md` 全局规范之下生效，只补充 JiTp 项目的具体约束，冲突时以本文件为准。
+补充 JiTp 项目的具体约束。
 
 ## 项目概况
 
-NeoForge 1.21.1 模组，Java 21，模组号 `jitp`，基础包 `dev.zanth.teleport`。源码只有三个文件：`JiTP`（模组入口）、`TeleportLimitHandler`（命令事件处理）、`TeleportCommandPermissionMixin`（Mixin）。`build.gradle` 的 `dependencies` 为空。
+NeoForge 1.21.1 模组，Java 21，mod id `jitp`，基础包 `dev.zanth.teleport`。
 
 ## 源码检索规则
 
@@ -17,12 +17,6 @@ NeoForge 1.21.1 模组，Java 21，模组号 `jitp`，基础包 `dev.zanth.telep
 ## 其他任务的工具偏好
 
 检索与读取项目文件之外的操作用专用工具完成，例如格式化、重构、诊断与构建。当前环境没有提供 IDE 集成时，使用命令行工具与 Gradle 任务完成同样的操作。
-
-## 空安全
-
-1. 项目没有引入 JSpecify、`javax.annotation` 或 JetBrains 注解依赖，现有代码不含空安全注解。
-2. 新增代码默认不添加空安全注解；确需使用时先引入依赖并取得用户确认，注解包按全局规范的优先级选择 JSpecify。
-3. 标注为可空的值在解引用前必须做非空检查。
 
 ## 代码风格
 
