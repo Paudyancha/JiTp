@@ -15,17 +15,14 @@ public class JiTP {
     @SuppressWarnings("unused")
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    @SuppressWarnings("unused")
-    public JiTP(IEventBus modEventBus, ModContainer modContainer) {
+    public JiTP(IEventBus modEventBus, @SuppressWarnings("unused") ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
-
     }
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
     }
 
-    @SuppressWarnings("unused")
     private void commonSetup(FMLCommonSetupEvent event) {
     }
 }
