@@ -5,6 +5,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
@@ -15,8 +16,9 @@ public class JiTP {
     @SuppressWarnings("unused")
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public JiTP(IEventBus modEventBus, @SuppressWarnings("unused") ModContainer modContainer) {
+    public JiTP(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
+        modContainer.registerConfig(ModConfig.Type.SERVER, TeleportConfig.SPEC);
     }
 
     @SubscribeEvent
