@@ -2,9 +2,11 @@ package dev.zanth.teleport.mixin;
 
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import dev.zanth.teleport.TeleportConfig;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.commands.TeleportCommand;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
@@ -25,7 +27,7 @@ public abstract class TeleportCommandPermissionMixin {
     private static ArgumentBuilder<CommandSourceStack, ?> jitp$allowTeleport(
             LiteralArgumentBuilder<CommandSourceStack> builder,
             Predicate<CommandSourceStack> requirement) {
-        return builder.requires(source -> true);
+        return jitp$applyTeleportPermission(builder, requirement);
     }
 
     @Redirect(
@@ -40,6 +42,13 @@ public abstract class TeleportCommandPermissionMixin {
     private static ArgumentBuilder<CommandSourceStack, ?> jitp$allowTp(
             LiteralArgumentBuilder<CommandSourceStack> builder,
             Predicate<CommandSourceStack> requirement) {
-        return builder.requires(source -> true);
+        return jitp$applyTeleportPermission(builder, requirement);
+    }
+
+    @Unique
+    private static ArgumentBuilder<CommandSourceStack, ?> jitp$applyTeleportPermission(
+            LiteralArgumentBuilder<CommandSourceStack> builder,
+            Predicate<CommandSourceStack> requirement) {
+        return builder.requires(source -> TeleportConfig.isTeleportAllowed() || requirement.test(source));
     }
 }

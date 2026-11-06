@@ -21,6 +21,9 @@ public final class TeleportLimitHandler {
 
     @SubscribeEvent
     public static void onCommand(CommandEvent event) {
+        if (!TeleportConfig.isTeleportAllowed()) {
+            return;
+        }
         ParseResults<CommandSourceStack> parse = event.getParseResults();
         CommandSourceStack source = parse.getContext().getSource();
 
