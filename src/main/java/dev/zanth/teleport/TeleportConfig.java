@@ -17,6 +17,7 @@ public final class TeleportConfig {
             .comment("Allow players without permission level 2 to use /tp and /teleport. Changes apply immediately.")
             .define("allowTeleportCommand", true);
         SPEC = builder.build();
+        JiTP.LOGGER.info("Transmission permission {} opened", TeleportConfig.isTeleportAllowed() ? "has been" : "not");
     }
 
     private TeleportConfig() {
