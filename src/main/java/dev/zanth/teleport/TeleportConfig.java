@@ -5,6 +5,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 /**
  * 模组配置。保存无权限玩家能否使用 {@code /tp} 与 {@code /teleport} 的开关，默认允许。
  * 采用 SERVER 类型配置，使每个存档或服务器可以独立调整该行为。
+ * 对每个玩家单独存储另一个数值,
  */
 public final class TeleportConfig {
 
