@@ -51,8 +51,7 @@ public class PlayerTPData extends SavedData {
         result.resultOrPartial(error -> JiTP.LOGGER.error("Failed to save PlayerTPData: {}", error))
             .ifPresentOrElse(
                 encodedTag -> tag.put("PlayerFlags", encodedTag),
-                () -> tag.put("PlayerFlags", new CompoundTag())
-            );
+                () -> tag.put("PlayerFlags", new CompoundTag()));
         return tag;
     }
 

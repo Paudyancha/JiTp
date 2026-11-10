@@ -20,8 +20,8 @@ public abstract class TeleportCommandPermissionMixin {
         at = @At(
             value = "INVOKE",
             ordinal = 0,
-            target = "Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;" +
-                     "requires(Ljava/util/function/Predicate;)Lcom/mojang/brigadier/builder/ArgumentBuilder;"
+            target = "Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;"
+                     + "requires(Ljava/util/function/Predicate;)Lcom/mojang/brigadier/builder/ArgumentBuilder;"
         )
     )
     private static ArgumentBuilder<CommandSourceStack, ?> jitp$allowTeleport(
@@ -35,8 +35,8 @@ public abstract class TeleportCommandPermissionMixin {
         at = @At(
             value = "INVOKE",
             ordinal = 1,
-            target = "Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;" +
-                     "requires(Ljava/util/function/Predicate;)Lcom/mojang/brigadier/builder/ArgumentBuilder;"
+            target = "Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;"
+                     + "requires(Ljava/util/function/Predicate;)Lcom/mojang/brigadier/builder/ArgumentBuilder;"
         )
     )
     private static ArgumentBuilder<CommandSourceStack, ?> jitp$allowTp(
