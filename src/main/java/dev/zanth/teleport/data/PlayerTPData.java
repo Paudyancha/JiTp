@@ -15,12 +15,11 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * 保存单个玩家是否允许使用 {@code /tp } 与 {@code /teleport } 的
+ * 保存单个玩家是否允许使用 {@code /tp } 与 {@code /teleport } 的qx
  */
-@SuppressWarnings("used")
 public class PlayerTPData extends SavedData {
     private static final Codec<Map<UUID, Boolean>> DATA_CODEC =
-        Codec.unboundedMap(UUIDUtil.CODEC, Codec.BOOL);
+        Codec.unboundedMap(UUIDUtil.STRING_CODEC, Codec.BOOL);
 
     private final Map<UUID, Boolean> playerFlags = new HashMap<>();
 
@@ -30,12 +29,14 @@ public class PlayerTPData extends SavedData {
         this.playerFlags.putAll(flags);
     }
 
-    @SuppressWarnings("used")
-    public boolean getFlag(UUID uuid) {
-        return this.playerFlags.getOrDefault(uuid, false);
+    public boolean hasFlag(UUID uuid) {
+        return this.playerFlags.containsKey(uuid);
     }
 
-    @SuppressWarnings("used")
+    public boolean getFlag(UUID uuid) {
+        return this.playerFlags.getOrDefault(uuid, true);
+    }
+
     public void setFlag(UUID uuid, boolean flag) {
         this.playerFlags.put(uuid, flag);
         this.setDirty();
@@ -52,12 +53,11 @@ public class PlayerTPData extends SavedData {
                 encodedTag -> tag.put("PlayerFlags", encodedTag),
                 () -> tag.put("PlayerFlags", new CompoundTag())
             );
-
         return tag;
     }
-    @SuppressWarnings("unused")
+
     public static final SavedData.Factory<PlayerTPData> FACTORY = new SavedData.Factory<>(
-        PlayerTPData::new, // 若文件不存在，直接 new
+        PlayerTPData::new, // 不存在则new
         (tag, registries) -> {
             // 从 tag 中获取，解析回 Map
             Tag flagsTag = tag.get("PlayerFlags");
